@@ -16,3 +16,5 @@ dependencyResolutionManagement {
 rootProject.name = "HalalImage"
 include(":halal-image")
 include(":compose-sample")
+include(":halal-view")
+include(":xml-sample")
