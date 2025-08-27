@@ -16,10 +16,12 @@ This library is **lightweight, easy to integrate, and customizable** to meet the
 
 ### Installation  
 
-Add **Halal Image** to your project:  
+Add **Halal Image** in module-level build.gradle:  
 
 ```
-implementation("com.example:halal-image:1.0.0")
+dependencies {
+    implementation("com.example:halal-image:1.0.0")
+}
 ```
 ---
 
