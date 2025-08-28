@@ -1,16 +1,17 @@
-# Halal Image  
+# Halal Image
+
+
 <p align="center">
   <img src="assets/banner.jpg" alt="Halal Image Banner" width="600"/>
 </p>
 
 
 ## 📖 Description  
-
 **Halal Image** is an AI-powered image filtering library designed to promote safe and culturally appropriate content.  
-The library uses advanced dee[ learning models to automatically detect and blur inappropriate or sensitive content in images, with full control over the blur strength, ensuring that visuals remain respectful and aligned with Islamic values.  
+The library uses advanced deep learning models to automatically detect and blur inappropriate or sensitive content in images, with full control over the blur strength, ensuring that visuals remain respectful and aligned with Islamic values.  
 
 <p align="center">
-  <img src="assets/sensitive_content.png" alt="Sensitive Content Sample" width="600"/>
+  <img src="assets/sensitive.jpg" alt="Sensitive Content Sample" width="600""/>
 </p>
 
 ## 🚀 How to Use  
@@ -126,7 +127,7 @@ imageView.loadSafeImage(
 
 | Parameter            | Type                   | Default | Description |
 |----------------------|------------------------|---------|-------------|
-| `imageUrl`           | `Any`                  | —       | The image source (URL, file, resource, etc.) |
+| `model`           | `Any`                  | —       | The image source (URL, file, resource, etc.) |
 | `blurRadiusPx`       | `Int`                  | `50`    | Blur intensity in **pixels** |
 | `onLoading`          | `(() -> Unit)?`        | `null`  | Callback triggered when image starts loading |
 | `onError`            | `(() -> Unit)?`        | `null`  | Callback triggered if image loading fails |
@@ -144,7 +145,7 @@ This ensures maximum performance and that sensitive content never flashes on the
 
 
 <p align="center">
-  <img src="assets/coil's_pipeline.png" alt="Coil's Pipeline" width="600"/>
+  <img src="assets/pipeline_coil.png" alt="Coil's Pipeline" width="600"/>
 </p>
 
 
@@ -153,7 +154,7 @@ When you load an image with **Halal Image**, it is first passed through Coil’s
 
 Under the hood, the detection is powered by a TensorFlow Lite model trained to distinguish between safe and unsafe content. Each image is resized, normalized, and classified, and if the probability of sensitive content exceeds a threshold, the image is flagged as haram.  
 
-To ensure smooth performance, Coil’s memory and disk caching are enabled so images are not repeatedly processed, and all transformations are executed in background threads. This guarantees that unsafe images are blurred before they appear on the screen, maintaining both efficiency and a safe user experience.  
+To ensure smooth performance, Coil’s memory and disk caching are enabled so images are not repeatedly processed.
 <p align="center">
   <img src="assets/halal_image_flow_chart.png" alt="Hala image flow chart" width="600"/>
 </p>
@@ -162,13 +163,13 @@ To ensure smooth performance, Coil’s memory and disk caching are enabled so im
 
 ## 📊 Model & Dataset   
 
-1. The AI model was trained on a custom dataset consisting of **11,304 images**, categorized as either **safe** or **unsafe**.  
-2. The **unsafe category** includes **5,652 images** containing sensitive content such as nudity, sexual material, hentai, and other inappropriate imagery.  
-3. The **safe category** also contains **5,652 images**, featuring appropriate content such as individuals in everyday attire, including hijabi women, men, and women in normal contexts.  
-4. To improve generalization and accuracy, the dataset was carefully collected from individuals of **diverse nationalities**.  
-5. The trained model achieved an accuracy of **96% on the training set** and **94% on the testing set**, effectively covering the majority of sensitive content detection cases, with only a few exceptions.  
-6. The deployed **TFLite model size** is **~10 MB**.  
-7. Supported image formats: **PNG**, **JPG**, , **JPEG2000**, and **WEBP**.
+- The AI model was trained on a custom dataset consisting of **11,304 images**, categorized as either **safe** or **unsafe**.  
+- The **unsafe category** includes **5,652 images** containing sensitive content such as nudity, sexual material, hentai, and other inappropriate imagery.  
+- The **safe category** also contains **5,652 images**, featuring appropriate content such as individuals in everyday attire, including hijabi women, men, and women in normal contexts.  
+- To improve generalization and accuracy, the dataset was carefully collected from individuals of **diverse nationalities**.  
+- The trained model achieved an accuracy of **96% on the training set** and **94% on the testing set**, effectively covering the majority of sensitive content detection cases, with only a few exceptions.  
+- The deployed **TFLite model size** is **~10 MB**.  
+- Supported image formats: **PNG**, **JPG**, **JPEG2000**, and **WEBP**.
 
 ----
 
