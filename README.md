@@ -1,3 +1,248 @@
+# Halal Image  
+<p align="center">
+  <img src="assets/banner.jpg" alt="Halal Image Banner" width="800"/>
+</p>
+
+
+## 📖 Description  
+
+**Halal Image** is an AI-powered image filtering library designed to promote safe and culturally appropriate content.  
+The library uses advanced machine learning models to automatically detect and blur inappropriate or sensitive content in images, ensuring that visuals remain respectful and aligned with Islamic values.  
+
+This library is **lightweight, easy to integrate, and customizable** to meet the needs of applications that prioritize safe and ethical content delivery.  
+
+
+## 🚀 How to Use  
+
+### Installation  
+
+Add **Halal Image** in module-level build.gradle:  
+
+```
+dependencies {
+    implementation("com.example:halal-image:1.0.0")
+}
+```
+---
+
+### 1. Jetpack Compose Usage  
+
+#### Minimal Usage  
+
+If you only want to display an image with automatic halal blurring, you can use **HalalImage** with just the `model` parameter:  
+
+```kotlin
+HalalImage(
+    model = "https://example.com/sample.jpg",
+    contentDescription = "Sample Image"
+)
+```
+
+#### Customizable Usage  
+
+You can fully customize **HalalImage** by providing parameters such as `loadingContent`, `errorContent`, `onBlurContent`, `blurRadius`, and more:  
+
+```kotlin
+HalalImage(
+    modifier = Modifier.fillMaxWidth(),
+    model = "https://example.com/sample.jpg",
+    contentDescription = "Sample Image",
+    loadingContent = { Text(text = "Loading...") },
+    errorContent = { Text(text = "Error loading image") },
+    onBlurContent = { Text(text = "Sensitive content")},
+    blurRadius = 20.dp,
+    contentScale = ContentScale.FillWidth
+)
+```
+#### Parameters Reference  
+
+
+| Parameter          | Type                | Default | Description |
+|--------------------|---------------------|---------|-------------|
+| `model`            | `Any`               | —       | The image source (URL, file, resource, etc.) |
+| `contentDescription` | `String?`         | `null`  | Description for accessibility (screen readers) |
+| `modifier`         | `Modifier`          | `Modifier` | Layout styling (size, padding, etc.) |
+| `loadingContent`   | `@Composable () -> Unit` | `null` | UI to display while the image is loading |
+| `errorContent`     | `@Composable () -> Unit` | `null` | UI to display if loading fails |
+| `onBlurContent`    | `@Composable () -> Unit` | `null` | UI overlay shown when inappropriate content is blurred |
+| `blurRadius`       | `Dp`                | `16.dp` | Blur strength applied to blurred images |
+| `contentScale`     | `ContentScale`      | `ContentScale.Crop` | Defines how the image should scale inside its container |
+
+---
+
+
+
+### 2. XML Usage
+
+#### Minimal Usage  
+
+If you only want to display an image with automatic halal blurring, you can use **HalalImage** with just the `model` parameter:  
+
+```kotlin
+binding.imageView1.loadSafeImage(
+    imageUrl = "https://example.com/sample.jpg",
+    placeholderRes = R.drawable.loading_bar,
+    errorDrawableRes = R.drawable.error_svgrepo_com
+)
+```
+
+#### Customizable Usage  
+
+You can fully customize **HalalImage** by providing parameters such as `loadingContent`, `errorContent`, `onBlurContent`, `blurRadius`, and more:  
+
+```kotlin
+binding.imageView1.loadSafeImage(
+    imageUrl = "https://example.com/sample.jpg",
+    blurRadiusPx = 70,
+    onLoading = { 
+        Toast.makeText(context, "Loading image...", Toast.LENGTH_SHORT).show() 
+    },
+    onError = { 
+        Toast.makeText(context, "Failed to load image", Toast.LENGTH_SHORT).show() 
+    },
+    onSuccess = { 
+        Toast.makeText(context, "Image loaded successfully!", Toast.LENGTH_SHORT).show() 
+    },
+    crossFadeEnabled = true,
+    placeholderRes = R.drawable.loading_bar,
+    errorDrawableRes = R.drawable.error_svgrepo_com
+)
+```
+#### Parameters Reference  
+
+
+
+| Parameter            | Type                   | Default | Description |
+|----------------------|------------------------|---------|-------------|
+| `imageUrl`           | `Any`                  | —       | The image source (URL, file, resource, etc.) |
+| `blurRadiusPx`       | `Int`                  | `50`    | Blur intensity in **pixels** |
+| `onLoading`          | `(() -> Unit)?`        | `null`  | Callback triggered when image starts loading |
+| `onError`            | `(() -> Unit)?`        | `null`  | Callback triggered if image loading fails |
+| `onSuccess`          | `(() -> Unit)?`        | `null`  | Callback triggered when image loads successfully |
+| `crossFadeEnabled`   | `Boolean`              | `true`  | Enables smooth crossfade animation between placeholder and image |
+| `placeholderRes`     | `@DrawableRes Int?`    | `null`  | Drawable resource displayed while loading |
+| `errorDrawableRes`   | `@DrawableRes Int?`    | `null`  | Drawable resource displayed on error |
+
+----
+
+## 🛠️ How Does It Work?  
+
+Halal Image ensures that images displayed in your app align with Islamic cultural values by combining **AI-powered content detection** with **automatic blurring**.  
+
+Halal Image integrates seamlessly with **Coil’s image loading pipeline** to analyze and transform images **before they are displayed**.  
+This ensures maximum performance and guarantees that unsafe content never flashes on the screen unblurred.  
+
+### 1. Image Request with Coil  
+When you use `HalalImage` (Compose) or `loadSafeImage` (XML), under the hood we build a **Coil `ImageRequest`**.  
+This request includes a custom **transformation** step that runs *before* the image is displayed.  
+
+```kotlin
+val request = ImageRequest.Builder(context)
+    .data(model)
+    .transformations(getBlurHaramTransformation(...))
+    .crossfade(true)
+    .build()
+```
+---
+
+### 2. Custom Transformation – BlurHaramTransformation
+Each image goes through BlurHaramTransformation, which:
+
+- Passes the image bitmap to the HaramImageDetector.
+
+- If the image is detected as haram (unsafe), it applies a box blur (with a customizable blurRadius).
+
+- If safe, the image is displayed normally without modification.
+
+``` kotlin
+override suspend fun transform(input: Bitmap, size: Size): Bitmap {
+    val isImageSensitive = haramImageDetector.isImageHaram(input)
+    return if (isImageSensitive) {
+        onBlur(true)   // notify blur applied
+        super.transform(input, size) // apply Coil’s blur
+    } else {
+        onBlur(false)
+        input // safe: return original image
+    }
+}
+```
+
+---
+
+### 3. AI Content Detection – HaramImageDetector
+
+The heart of **Halal Image** is the AI-based `HaramImageDetector`.  
+
+- It loads a **TensorFlow Lite model** (`Islamic_Image_Model.tflite`) from the app’s assets.  
+- Each input image is processed as follows:  
+  1. **Resized** to the model’s input size (`224x224`).  
+  2. **Normalized** to values between `0` and `1`.  
+  3. **Fed into the TFLite interpreter** for classification.  
+
+- The output is a **score** representing the probability of nudity/haram content.  
+- If `nudeScore > 0.5`, the image is flagged and blurred.  
+
+```kotlin
+val nudeScore = result.getOrNull(1) ?: 0f
+return nudeScore > 0.5f
+```
+
+---
+
+### 4. Caching & Performance  
+
+- **Memory & disk caching** are enabled in the request to avoid reprocessing the same image.  
+- **Transformations** run in background threads (`Dispatchers.Default`) to keep the UI smooth.  
+- By plugging into **Coil’s pipeline**, unsafe images are **blurred before being drawn**, ensuring a safe and seamless user experience.  
+
+
+----
+## 🌍 Supported Platforms  
+
+Halal Image currently supports the following environments:
+
+- **Android**  
+  - ✅ Jetpack Compose  
+  - ✅ XML Views 
+
+⚠️ **Note:** iOS, Desktop, and Web are not supported yet. Planned for future releases.
+
+----
+## 🔮 Future Development  
+
+We are continuously improving **Halal Image**. Here are some of the planned features and enhancements:  
+
+-  **iOS Support** – extending beyond Android.  
+-  **Smarter AI Model** – improved accuracy with more training data.  
+-  **More Image Transformations** – additional safe rendering options besides blur.  
+-  **Performance Optimizations** – faster detection and reduced memory usage.  
+
+🙌 Contributions and suggestions are always welcome!  
+
+----
+
+## 🤝 Contributors  
+
+Halal Image is proudly developed and maintained by:  
+
+- [**Abdulrahman Khattab**](https://github.com/Abdulrahman-Khattab)  
+- [**Fares Mohamed**](https://github.com/FaresM0hamed)  
+- [**Malak Raef**](https://github.com/Malak187)  
+- [**Muhammed Edrees**](https://github.com/MuhammedEdrees)  
+
+
+----
+
+## 📄 License  
+
+Halal Image is released under the **MIT License**.  
+
+You are free to use, modify, and distribute this library in your projects, provided that proper credit is given.  
+
+See the [LICENSE](LICENSE) file for full details.  
+
+
+
 [![official project](http://jb.gg/badges/official.svg)](https://github.com/JetBrains#jetbrains-on-github)
 
 # Multiplatform library template
