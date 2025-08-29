@@ -3,7 +3,7 @@ package com.devvura.safe_image
 
 import android.content.Context
 import android.graphics.Bitmap
-import com.devvura.safe_image.ml.IslamicImageModel
+import io.github.devvura.safeimage.library.ml.IslamicImageModel
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.common.ops.NormalizeOp
 import org.tensorflow.lite.support.image.ImageProcessor

@@ -1,6 +1,6 @@
-package org.momentum.compose_sample
+package com.devvura.compose_sample
 
-import HalalImage
+import com.devvura.safe_image.SafeImage
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -16,6 +16,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 
 class MainActivity : ComponentActivity() {
@@ -31,7 +33,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) {
-                    HalalImage(
+                    SafeImage(
                         modifier = Modifier.fillMaxWidth(),
                         model = imageUrl,
                         contentDescription = "Sample Image",
@@ -39,7 +41,7 @@ class MainActivity : ComponentActivity() {
                         errorContent = { Text(text = "Error loading image") },
                         onBlurContent = { OnBlurContent() },
                         blurRadius = 20.dp,
-                        contentScale = androidx.compose.ui.layout.ContentScale.FillWidth
+                        contentScale = ContentScale.FillWidth
                     )
                 }
             }
@@ -54,11 +56,11 @@ private fun OnBlurContent(modifier: Modifier = Modifier) {
     ) {
         Text(
             text = "Sensitive Content",
-            color = androidx.compose.ui.graphics.Color.White,
+            color = Color.White,
             modifier = Modifier
                 .padding(16.dp)
                 .background(
-                    androidx.compose.ui.graphics.Color.Black.copy(
+                    Color.Black.copy(
                         alpha = 0.7f
                     )
                 )

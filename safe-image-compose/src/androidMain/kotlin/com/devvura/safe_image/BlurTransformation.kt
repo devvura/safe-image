@@ -1,3 +1,5 @@
+package com.devvura.safe_image
+
 import android.graphics.Bitmap
 import androidx.core.graphics.createBitmap
 import androidx.core.graphics.scale
@@ -31,7 +33,7 @@ internal open class BlurTransformation(
     override val cacheKey: String = "blur_${blurRadiusPx}_${downscaleFactor}_${blurPasses}"
 
     /**
-     * Applies a blur transformation to the input [android.graphics.Bitmap].
+     * Applies a blur transformation to the input [Bitmap].
      * This function is called by Coil during image loading and transformation.
      * The input bitmap is never mutated.
      *

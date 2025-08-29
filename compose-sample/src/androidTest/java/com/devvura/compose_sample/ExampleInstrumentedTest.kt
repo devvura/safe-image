@@ -1,4 +1,4 @@
-package com.devura.xmlSample
+package com.devvura.compose_sample
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.devura.xmlSample", appContext.packageName)
+        assertEquals("org.momentum.compose_sample", appContext.packageName)
     }
 }

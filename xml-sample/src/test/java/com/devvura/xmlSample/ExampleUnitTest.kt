@@ -1,4 +1,4 @@
-package com.devura.xmlSample
+package com.devvura.xmlSample
 
 import org.junit.Test
 

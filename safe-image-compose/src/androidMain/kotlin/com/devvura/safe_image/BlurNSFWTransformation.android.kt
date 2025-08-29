@@ -1,15 +1,15 @@
-import coil3.Bitmap
+package com.devvura.safe_image
+
 import coil3.PlatformContext
-import coil3.size.Size
 import coil3.transform.Transformation
 
 internal actual fun getBlurNSFWTransformation(
     onBlur: (isBlurred: Boolean) -> Unit,
-    blurRadiusPx: Int,
+    blurRadius: Int,
     context: PlatformContext
-): Transformation = BlurHaramTransformation(
+): Transformation = BlurNSFWTransformation(
     onBlur = onBlur,
-    haramImageDetector = HaramImageDetector(context),
-    blurRadiusPx = blurRadiusPx
+    nsfwImageDetector = NSFWImageDetector(context),
+    blurRadius = blurRadius
 )
 

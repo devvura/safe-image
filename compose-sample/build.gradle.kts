@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "io.github.devvura.compose_sample"
+    namespace = "com.devvura.compose_sample"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "io.github.devvura.compose_sample"
+        applicationId = "com.devvura.compose_sample"
         minSdk = 24
         targetSdk = 36
         versionCode = 1

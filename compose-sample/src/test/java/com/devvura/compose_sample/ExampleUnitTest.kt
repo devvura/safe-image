@@ -1,4 +1,4 @@
-package org.momentum.compose_sample
+package com.devvura.compose_sample
 
 import org.junit.Test
 

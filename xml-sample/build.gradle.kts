@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "io.github.devvura.xmlSample"
+    namespace = "com.devvura.xmlSample"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "io.github.devvura.xmlSample"
+        applicationId = "com.devvura.xmlSample"
         minSdk = 26
         targetSdk = 36
         versionCode = 1

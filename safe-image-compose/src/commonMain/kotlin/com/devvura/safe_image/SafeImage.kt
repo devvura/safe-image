@@ -1,3 +1,5 @@
+package com.devvura.safe_image
+
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -37,11 +39,11 @@ fun SafeImage(
         .Builder(context)
         .data(model)
         .transformations(
-            getBlurHaramTransformation(
+            getBlurNSFWTransformation(
                 onBlur = { _isBlurred: Boolean ->
                     isBlurred = _isBlurred
                 },
-                blurRadiusPx = blurRadius.value.toInt(),
+                blurRadius = blurRadius.value.toInt(),
                 context = context
             )
         ).memoryCachePolicy(CachePolicy.ENABLED)
