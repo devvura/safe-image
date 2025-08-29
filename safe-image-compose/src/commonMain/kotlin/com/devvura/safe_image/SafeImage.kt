@@ -29,7 +29,7 @@ fun SafeImage(
     loadingContent: (@Composable () -> Unit)? = null,
     errorContent: (@Composable () -> Unit)? = null,
     onBlurContent: (@Composable () -> Unit)? = null,
-    blurRadius: Dp = SafeImageDefaults.BlurRadius,
+    blurRadius: Int = SafeImageDefaults.BlurRadius,
     crossfade: Boolean = true,
     contentScale: ContentScale = SafeImageDefaults.ContentScale,
 ) {
@@ -43,7 +43,7 @@ fun SafeImage(
                 onBlur = { _isBlurred: Boolean ->
                     isBlurred = _isBlurred
                 },
-                blurRadius = blurRadius.value.toInt(),
+                blurRadius = blurRadius,
                 context = context
             )
         ).memoryCachePolicy(CachePolicy.ENABLED)
@@ -86,6 +86,6 @@ fun SafeImage(
 }
 
 internal object SafeImageDefaults {
-    val BlurRadius = 16.dp
+    const val BlurRadius = 16
     val ContentScale = ComposeContentScale.Crop
 }

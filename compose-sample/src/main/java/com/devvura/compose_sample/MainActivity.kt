@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
                         loadingContent = { Text(text = "Loading...") },
                         errorContent = { Text(text = "Error loading image") },
                         onBlurContent = { OnBlurContent() },
-                        blurRadius = 20.dp,
+                        blurRadius = 20,
                         contentScale = ContentScale.FillWidth
                     )
                 }
