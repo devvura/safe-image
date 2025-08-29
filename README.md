@@ -2,7 +2,7 @@
 
 
 <p align="center">
-  <img src="assets/banner.png" alt="Safe Image Banner" width="600"/>
+  <img src="assets/banner.png" alt="Safe Image Banner"/>
 </p>
 
 
@@ -11,7 +11,7 @@
 The library uses advanced deep learning models to automatically detect and blur inappropriate or sensitive content in images, with full control over the blur strength, ensuring that visuals remain respectful and aligned with Islamic values.  
 
 <p align="center">
-  <img src="assets/sensitive.jpg" alt="Sensitive Content Sample" width="600""/>
+  <img src="assets/sensitive.jpg" alt="Sensitive Content Sample" width="600"/>
 </p>
 
 ## 🚀 How to Use  
@@ -40,7 +40,7 @@ dependencies {
 
 #### Minimal Usage  
 
-If you only want to display an image with automatic safe blurring, you can use **SafelImage** with just the `model` parameter:  
+If you only want to display an image with automatic blurring, you can use **SafelImage** with just the `model` parameter:  
 
 ```kotlin
 SafeImage(
@@ -61,7 +61,7 @@ SafeImage(
     loadingContent = { Text(text = "Loading...") },
     errorContent = { Text(text = "Error loading image") },
     onBlurContent = { Text(text = "Sensitive content")},
-    blurRadius = 20.dp,
+    blurRadius = 20,
     contentScale = ContentScale.FillWidth
 )
 ```
@@ -76,7 +76,7 @@ SafeImage(
 | `loadingContent`   | `@Composable () -> Unit` | `null` | UI to display while the image is loading |
 | `errorContent`     | `@Composable () -> Unit` | `null` | UI to display if loading fails |
 | `onBlurContent`    | `@Composable () -> Unit` | `null` | UI overlay shown when inappropriate content is blurred |
-| `blurRadius`       | `Dp`                | `16.dp` | Blur strength applied to blurred images |
+| `blurRadius`       | `Int`                | `16` | Blur strength applied to blurred images |
 | `contentScale`     | `ContentScale`      | `ContentScale.Crop` | Defines how the image should scale inside its container |
 
 ---
@@ -87,7 +87,7 @@ SafeImage(
 
 #### Minimal Usage  
 
-If you only want to display an image with automatic safe blurring, you can use **SafeImage** with just the `model` parameter:  
+If you only want to display an image with automatic blurring, you can use **SafeImage** with just the `model` parameter:  
 
 ```kotlin
 val imageView = findViewById<ImageView>(R.id.imageView1)
@@ -100,7 +100,7 @@ imageView.loadSafeImage(
 
 #### Customizable Usage  
 
-You can fully customize **SafeImage** by providing parameters such as `onLoading`, `onError`,  `blurRadiusPx`, and more:  
+You can fully customize **SafeImage** by providing parameters such as `onLoading`, `onError`,  `blurRadius`, and more:  
 
 ```kotlin
 val imageView = findViewById<ImageView>(R.id.imageView1)
@@ -128,7 +128,7 @@ imageView.loadSafeImage(
 | Parameter          | Type                   | Default | Description |
 |--------------------|------------------------|---------|-------------|
 | `model`           | `Any`                  | —       | The image source (URL, file, resource, etc.) |
-| `blurRadius`       | `Int`                  | `50`    | Blur intensity in **pixels** |
+| `blurRadius`       | `Int`                  | `50`    | Blur strength in **pixels** |
 | `onLoading`        | `(() -> Unit)?`        | `null`  | Callback triggered when image starts loading |
 | `onError`          | `(() -> Unit)?`        | `null`  | Callback triggered if image loading fails |
 | `onSuccess`        | `(() -> Unit)?`        | `null`  | Callback triggered when image loads successfully |
@@ -152,7 +152,7 @@ This ensures maximum performance and that sensitive content never flashes on the
 
 When you load an image with **Safe Image**, it is first passed through Coil’s request pipeline, which includes a custom transformation. This transformation uses an AI-powered detector to analyze the image before it is displayed. If the detector identifies unsafe content, the image is blurred with a configurable blur radius; otherwise, it is shown normally.  
 
-Under the hood, the detection is powered by a TensorFlow Lite model trained to distinguish between safe and unsafe content. Each image is resized, normalized, and classified, and if the probability of sensitive content exceeds a threshold, the image is flagged as haram.  
+Under the hood, the detection is powered by a TensorFlow Lite model trained to distinguish between safe and unsafe content. Each image is resized, normalized, and classified, and if the probability of sensitive content exceeds a threshold, the image is flagged as NSFW.  
 
 To ensure smooth performance, Coil’s memory and disk caching are enabled so images are not repeatedly processed.
 <p align="center">
