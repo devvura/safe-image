@@ -2,7 +2,7 @@
 
 
 <p align="center">
-  <img src="assets/banner.jpg" alt="Safe Image Banner" width="600"/>
+  <img src="assets/banner.png" alt="Safe Image Banner" width="600"/>
 </p>
 
 
