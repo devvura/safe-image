@@ -20,7 +20,7 @@ import androidx.compose.ui.layout.ContentScale as ComposeContentScale
 
 
 @Composable
-fun HalalImage(
+fun SafeImage(
     model: Any,
     contentDescription: String?,
     modifier: Modifier = Modifier,
@@ -28,6 +28,7 @@ fun HalalImage(
     errorContent: (@Composable () -> Unit)? = null,
     onBlurContent: (@Composable () -> Unit)? = null,
     blurRadius: Dp = SafeImageDefaults.BlurRadius,
+    crossfade: Boolean = true,
     contentScale: ContentScale = SafeImageDefaults.ContentScale,
 ) {
     val context = LocalPlatformContext.current
@@ -45,7 +46,7 @@ fun HalalImage(
             )
         ).memoryCachePolicy(CachePolicy.ENABLED)
         .diskCachePolicy(policy = CachePolicy.ENABLED)
-        .crossfade(true)
+        .crossfade(crossfade)
         .build()
 
     SubcomposeAsyncImage(

@@ -11,7 +11,7 @@ import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.nio.MappedByteBuffer
 import java.nio.channels.FileChannel
 
-internal class HaramImageDetector(
+internal class NSFWImageDetector(
     context: Context
 ) {
     private val inputImageSize = INPUT_IMAGE_SIZE
@@ -21,7 +21,7 @@ internal class HaramImageDetector(
         interpreter = Interpreter(loadModelFile(context, MODEL_FILE))
     }
 
-    fun isImageHaram(
+    fun isImageNSFW(
         selectedBitmap: Bitmap,
     ): Boolean {
         val tensorImage = TensorImage(DataType.FLOAT32)
@@ -43,8 +43,8 @@ internal class HaramImageDetector(
         interpreter.run(inputBuffer.buffer, outputBuffer.buffer.rewind())
 
         val result = outputBuffer.floatArray
-        val nudeScore = result.getOrNull(1) ?: 0f
-        return nudeScore > 0.5f
+        val nsfwScore = result.getOrNull(1) ?: 0f
+        return nsfwScore > 0.5f
     }
 
     private fun buildImageProcessor(): ImageProcessor {

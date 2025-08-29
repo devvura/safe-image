@@ -1,9 +1,9 @@
 
-package com.devfares.halal_view
+package com.devvura.safe_image
 
 import android.content.Context
 import android.graphics.Bitmap
-import com.devfares.halal_view.ml.IslamicImageModel
+import com.devvura.safe_image.ml.IslamicImageModel
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.common.ops.NormalizeOp
 import org.tensorflow.lite.support.image.ImageProcessor
@@ -11,12 +11,12 @@ import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.image.ops.ResizeOp
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 
-class HaramImageDetector(
+class NSFWImageDetector(
     private val context: Context
 ) {
     private val inputImageSize = INPUT_IMAGE_SIZE
 
-    fun isImageHaram(
+    fun isImageNSFW(
         selectedBitmap: Bitmap,
     ): Boolean {
         val model = IslamicImageModel.newInstance(context)
@@ -37,8 +37,8 @@ class HaramImageDetector(
 
         val result = outputBuffer.floatArray
         result.getOrNull(0) ?: 0f
-        val nudeScore = result.getOrNull(1) ?: 0f
-        return nudeScore > NSFW_DETECTION_THRESHOLD
+        val nsfwScore = result.getOrNull(1) ?: 0f
+        return nsfwScore > NSFW_DETECTION_THRESHOLD
     }
 
     private fun buildImageProcessor(): ImageProcessor {

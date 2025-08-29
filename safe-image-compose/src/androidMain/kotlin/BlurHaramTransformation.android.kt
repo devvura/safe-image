@@ -3,7 +3,7 @@ import coil3.PlatformContext
 import coil3.size.Size
 import coil3.transform.Transformation
 
-internal actual fun getBlurHaramTransformation(
+internal actual fun getBlurNSFWTransformation(
     onBlur: (isBlurred: Boolean) -> Unit,
     blurRadiusPx: Int,
     context: PlatformContext

@@ -1,4 +1,4 @@
-package com.devfares.halal_view
+package com.devvura.safe_image
 
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
@@ -8,11 +8,11 @@ import coil3.request.ImageRequest
 import coil3.request.crossfade
 import coil3.request.transformations
 import coil3.toBitmap
-import com.devfares.halal_view.util.setDrawableRes
+import com.devvura.safe_image.util.setDrawableRes
 
 fun ImageView.loadSafeImage(
-    imageUrl: Any,
-    blurRadiusPx: Int = 50,
+    model: Any,
+    blurRadius: Int = 50,
     onLoading: (() -> Unit)? = null,
     onError: (() -> Unit)? = null,
     onSuccess: (() -> Unit)? = null,
@@ -22,7 +22,7 @@ fun ImageView.loadSafeImage(
 ) {
     val context = this.context
     val request = ImageRequest.Builder(context)
-        .data(imageUrl)
+        .data(model)
         .target(
             onStart = {
                 setDrawableRes(placeholderRes)
@@ -45,9 +45,9 @@ fun ImageView.loadSafeImage(
             diskCachePolicy(CachePolicy.ENABLED)
 
             transformations(
-                BlurHaramTransformation(
-                    haramImageDetector = HaramImageDetector(context),
-                    blurRadiusPx = blurRadiusPx,
+                BlurNSFWTransformation(
+                    nsfwImageDetector = NSFWImageDetector(context),
+                    blurRadius = blurRadius,
                 )
             )
         }

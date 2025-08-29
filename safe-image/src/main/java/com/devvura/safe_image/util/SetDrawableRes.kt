@@ -1,4 +1,4 @@
-package com.devfares.halal_view.util
+package com.devvura.safe_image.util
 
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.widget.ImageView

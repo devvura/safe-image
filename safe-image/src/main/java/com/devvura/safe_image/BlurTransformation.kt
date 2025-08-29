@@ -1,4 +1,4 @@
-package com.devfares.halal_view
+package com.devvura.safe_image
 
 import android.graphics.Bitmap
 import androidx.core.graphics.createBitmap
@@ -18,7 +18,7 @@ import kotlin.math.min
 
 
 open class BlurTransformation(
-    private val blurRadiusPx: Int,
+    private val blurRadius: Int,
     private val downscaleFactor: Float = DEFAULT_SCALE,
     private val blurPasses: Int = DEFAULT_PASSES
 ) : Transformation() {
@@ -30,7 +30,7 @@ open class BlurTransformation(
         const val DEFAULT_PASSES = 3
     }
 
-    override val cacheKey: String = "blur_${blurRadiusPx}_${downscaleFactor}_${blurPasses}"
+    override val cacheKey: String = "blur_${blurRadius}_${downscaleFactor}_${blurPasses}"
 
     /**
      * Applies a blur transformation to the input [android.graphics.Bitmap].
@@ -42,7 +42,7 @@ open class BlurTransformation(
      * @return A new bitmap with the blur effect applied.
      */
     override suspend fun transform(input: Bitmap, size: Size): Bitmap {
-        val clampedRadius = blurRadiusPx.coerceIn(MIN_RADIUS, MAX_RADIUS)
+        val clampedRadius = blurRadius.coerceIn(MIN_RADIUS, MAX_RADIUS)
         return createBlurredBitmap(input, clampedRadius)
     }
 

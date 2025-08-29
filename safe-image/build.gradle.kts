@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.devfares.halal_view"
-    compileSdk = 36
+    namespace = "io.github.devvura.safeimage.library"
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = 26
+        minSdk = libs.versions.android.minSdk.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")

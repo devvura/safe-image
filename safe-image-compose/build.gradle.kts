@@ -10,7 +10,7 @@ plugins {
 //    alias(libs.plugins.vanniktech.mavenPublish)
 }
 
-group = "io.momentum.halalimage"
+group = "io.github.devvura.safeimage"
 version = "0.0.1"
 
 kotlin {
@@ -38,7 +38,7 @@ kotlin {
 }
 
 android {
-    namespace = "org.momentum.halalimage.library"
+    namespace = "io.github.devvura.safeimage.library"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
