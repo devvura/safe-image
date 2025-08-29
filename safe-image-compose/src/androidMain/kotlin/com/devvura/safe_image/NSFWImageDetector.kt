@@ -57,7 +57,7 @@ internal class NSFWImageDetector(
 
     companion object {
         private const val INPUT_IMAGE_SIZE = 224
-        private const val MODEL_FILE = "Islamic_Image_Model.tflite"
+        private const val MODEL_FILE = "safe_image_model.tflite"
     }
 }
 

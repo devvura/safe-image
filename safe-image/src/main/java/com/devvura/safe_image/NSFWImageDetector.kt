@@ -1,9 +1,8 @@
-
 package com.devvura.safe_image
 
 import android.content.Context
 import android.graphics.Bitmap
-import io.github.devvura.safeimage.library.ml.IslamicImageModel
+import io.github.devvura.safeimage.library.ml.SafeImageModel
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.common.ops.NormalizeOp
 import org.tensorflow.lite.support.image.ImageProcessor
@@ -19,7 +18,7 @@ class NSFWImageDetector(
     fun isImageNSFW(
         selectedBitmap: Bitmap,
     ): Boolean {
-        val model = IslamicImageModel.newInstance(context)
+        val model = SafeImageModel.newInstance(context)
 
         val tensorImage = TensorImage(DataType.FLOAT32)
         tensorImage.load(selectedBitmap)
