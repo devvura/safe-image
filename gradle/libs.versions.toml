@@ -7,7 +7,6 @@ coil = "3.3.0"
 compose = "1.8.2"
 kotlin = "2.2.0"
 ktor = "3.2.3"
-mavenPublish = "0.29.0"
 tensorflow = "0.5.0"
 junit = "4.13.2"
 junitVersion = "1.3.0"
@@ -54,7 +53,7 @@ androidLibrary = { id = "com.android.library", version.ref = "agp" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-vanniktech-mavenPublish = { id = "com.vanniktech.maven.publish", version = "mavenPublish" }
+vanniktech-mavenPublish = { id = "com.vanniktech.maven.publish", version = "0.34.0" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
