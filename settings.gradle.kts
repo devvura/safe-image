@@ -13,8 +13,8 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "HalalImage"
-include(":halal-image")
+rootProject.name = "SafeImage"
+include(":safe-image-compose")
 include(":compose-sample")
-include(":halal-view")
+include(":safe-image")
 include(":xml-sample")

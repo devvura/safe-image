@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.devura.xmlSample"
+    namespace = "com.devvura.xmlSample"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.devura.xmlSample"
+        applicationId = "com.devvura.xmlSample"
         minSdk = 26
         targetSdk = 36
         versionCode = 1
@@ -40,7 +40,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":halal-view"))
+    implementation(project(":safe-image"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
