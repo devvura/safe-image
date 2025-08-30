@@ -1,4 +1,6 @@
 # Safe Image
+![Maven Central Version](https://img.shields.io/maven-central/v/io.github.devvura/safe-image-compose?label=safe-image-compose&color=%233ddc84)
+![Maven Central Version](https://img.shields.io/maven-central/v/io.github.devvura/safe-image?label=safe-image-xml)
 
 
 <p align="center">
@@ -18,7 +20,7 @@ The library uses advanced deep learning models to automatically detect and blur 
 
 ### Installation  
 
-1. Make sure **Maven Central** is added to your project-level `build.gradle` (or `settings.gradle` for Gradle 7+):  
+Make sure **Maven Central** is added to your project-level `build.gradle` (or `settings.gradle` for Gradle 7+):  
 
 ```gradle
 repositories {
@@ -27,16 +29,18 @@ repositories {
 }
 ```
 
-2. Add **Safe Image** in module-level `build.gradle`:  
-
-```
-dependencies {
-    implementation("com.example:safe-image:1.0.0")
-}
-```
 ---
 
 ### 1. Jetpack Compose Usage  
+
+
+Add **Safe Image** in module-level `build.gradle`:  
+
+```
+dependencies {
+    implementation("io.github.devvura:safe-image-compose:1.0.0")
+}
+```
 
 #### Minimal Usage  
 
@@ -84,6 +88,14 @@ SafeImage(
 
 
 ### 2. XML Usage
+
+Add **Safe Image** in module-level `build.gradle`:  
+
+```
+dependencies {
+    implementation("io.github.devvura:safe-image:1.0.0")
+}
+```
 
 #### Minimal Usage  
 
@@ -138,7 +150,7 @@ imageView.loadSafeImage(
 
 ----
 
-## 🛠️ How Does It Work?  
+## 🛠️ How Does It Work
 
 Safe Image integrates seamlessly with Coil’s image loading pipeline, working specifically on the **Transformation step** to detect and blur unsafe images before they are displayed.  
 This ensures maximum performance and that sensitive content never flashes on the screen unblurred.
