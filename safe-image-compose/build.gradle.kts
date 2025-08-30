@@ -1,4 +1,4 @@
-﻿//import com.vanniktech.maven.publish.SonatypeHost
+﻿import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -7,15 +7,15 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.compose.compiler)
-//    alias(libs.plugins.vanniktech.mavenPublish)
+    alias(libs.plugins.vanniktech.mavenPublish)
 }
 
-group = "io.github.devvura.safeimage"
-version = "0.0.1"
+group = "io.github.devvura"
+version = "1.0.0"
 
 kotlin {
     androidTarget {
-//        publishLibraryVariants("release")
+        publishLibraryVariants("release")
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
@@ -49,36 +49,51 @@ android {
     }
 }
 
-//mavenPublishing {
-//    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
-//
-//    signAllPublications()
-//
-//    coordinates(group.toString(), "library", version.toString())
-//
-//    pom {
-//        name = "My library"
-//        description = "A library."
-//        inceptionYear = "2024"
-//        url = "https://github.com/kotlin/multiplatform-library-template/"
-//        licenses {
-//            license {
-//                name = "XXX"
-//                url = "YYY"
-//                distribution = "ZZZ"
-//            }
-//        }
-//        developers {
-//            developer {
-//                id = "XXX"
-//                name = "YYY"
-//                url = "ZZZ"
-//            }
-//        }
-//        scm {
-//            url = "XXX"
-//            connection = "YYY"
-//            developerConnection = "ZZZ"
-//        }
-//    }
-//}
+mavenPublishing {
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+
+    signAllPublications()
+
+    coordinates(group.toString(), "safe-image-compose", version.toString())
+
+    pom {
+        name = "Safe Image Compose"
+        description = "A Jetpack Compose library to load images safely with NSFW detection and blurring."
+        inceptionYear = "2025"
+        url = "https://github.com/devvura/safe-image/"
+        licenses {
+            license {
+                name = "The Apache License, Version 2.0"
+                url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                distribution = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+            }
+        }
+        developers {
+            developer {
+                id = "abdulrahmankhattab"
+                name = "Abdulrahman Khattab"
+                url = "https://github.com/Abdulrahman-Khattab"
+            }
+            developer {
+                id = "faresmohamed"
+                name = "Fares Mohamed"
+                url = "https://github.com/FaresM0hamed"
+            }
+            developer {
+                id = "malakraef"
+                name = "Malak Raef"
+                url = "https://github.com/Malak187"
+            }
+            developer {
+                id = "muhammededrees"
+                name = "Muhammed Edrees"
+                url = "https://github.com/MuhammedEdrees"
+            }
+        }
+        scm {
+            url = "https://github.com/devvura/safe-image/"
+            connection = "scm:git:git://github.com/devvura/safe-image.git"
+            developerConnection = "scm:git:ssh://git@github.com/devvura/safe-image.git"
+        }
+    }
+}
