@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "org.momentum.compose_sample"
+    namespace = "com.devvura.compose_sample"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "org.momentum.compose_sample"
+        applicationId = "com.devvura.compose_sample"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -49,7 +49,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(project(":halal-image"))
+    implementation(project(":safe-image-compose"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

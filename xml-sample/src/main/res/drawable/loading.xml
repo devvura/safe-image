@@ -1,0 +1,26 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+
+    <group
+        android:name="rotation_group"
+        android:pivotX="24"
+        android:pivotY="24">
+
+        <path
+            android:name="spinner_path"
+            android:pathData="M24,4 A20,20 0 0,1 44,24 A20,20 0 0,1 24,44 A20,20 0 0,1 4,24 A20,20 0 0,1 24,4 Z M24,8 A16,16 0 0,0 8,24 A16,16 0 0,0 24,40 A16,16 0 0,0 40,24 A16,16 0 0,0 24,8 Z"
+            android:fillColor="#2A2828" />
+
+        <path
+            android:name="loading_arc"
+            android:pathData="M24,4 A20,20 0 0,1 44,24"
+            android:strokeColor="#2196F3"
+            android:strokeWidth="2"
+            android:strokeLineCap="round"
+            android:fillColor="@android:color/transparent" />
+
+    </group>
+</vector>
